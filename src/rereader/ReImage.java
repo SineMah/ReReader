@@ -30,7 +30,7 @@ public class ReImage {
         words = ReText.proofWords(words);
         Image[] images = new Image[words.length];
         
-        ReReader.initDictionary();
+        ReReader.initDictionary(words);
         for(int i=0; i<words.length; i++) {
 //            images[i] = generateImage(words[i], 'b');
             images[i] = proofWord(words[i]);
