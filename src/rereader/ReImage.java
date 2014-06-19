@@ -28,9 +28,9 @@ public class ReImage {
     
     public static Image[] generateImageList(String[] words) {
         words = ReText.proofWords(words);
+        
         Image[] images = new Image[words.length];
         
-        ReReader.initDictionary(words);
         for(int i=0; i<words.length; i++) {
 //            images[i] = generateImage(words[i], 'b');
             images[i] = proofWord(words[i]);

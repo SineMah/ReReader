@@ -61,8 +61,8 @@ public class ReReader {
         }
         
         dictionary = chooseDic(cleanedDictionaries, text);
-        
-        return new String[1];
+
+        return dictionary;
     }
     
     public static String[] getDictionaries() {
@@ -148,7 +148,7 @@ public class ReReader {
         
         for(int i=0; i<dics.length; i++) {
             for(int j=0; j<dics[i].length; j++) {
-                for(int cnt=0; cnt < text.length; cnt++) {
+                for(int cnt=0; cnt < text.length && cnt < 1000; cnt++) {
                     tempText = text[cnt].toLowerCase();
                     tempDic = dics[i][j].toLowerCase();
                     
@@ -161,7 +161,7 @@ public class ReReader {
         
         langVal = getMax(countLang);
         langKey = getIndex(countLang, langVal);
-         
+        
         return dics[langKey];
     }
     
