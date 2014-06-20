@@ -202,7 +202,7 @@ public class ReUI extends javax.swing.JFrame {
                 words = ReText.splitText(content);
 //                words = ReText.proofWords(words);
                 images = ReImage.generateImageList(words);
-               
+
                 positionWords = 0;
                 
 //                System.out.println(Arrays.deepToString(words));
@@ -220,7 +220,7 @@ public class ReUI extends javax.swing.JFrame {
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    if(positionWords < words.length) {
+                    if(positionWords < images.length) {
 //                        textField.setText(words[positionWords]);
                         
                         drawImage(images[positionWords]);

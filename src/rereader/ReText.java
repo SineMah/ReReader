@@ -45,7 +45,7 @@ public class ReText {
 
     private static String[] splitWithDictionary(String word, String[] dic) {
          String[] splitted = new String[0];
-        
+
         if(word.length() >8) {
                  splitted = wordParts(word, dic);
 //                 debug here
@@ -56,7 +56,7 @@ public class ReText {
             splitted = new String[1];
             splitted[0] = word;
         }
-       
+
         return splitted;
     }
     
@@ -95,9 +95,14 @@ public class ReText {
             splitValue = findInDic(word, dic);
             splitSize = splitValue.length();
             
-            splittedList.add(word.substring(0, splitSize));
+            if(word.substring(0, splitSize).length() > 0) {
+                splittedList.add(word.substring(0, splitSize) + "-");
+            }
+            
             word = word.substring(splitSize, word.length());
         }
+        
+        splittedList.add(word);
         
         String[] finalSplitted = new String[splittedList.size()];
         
