@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package rereader;
 
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
-import java.applet.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.ImageIcon;
-import javax.swing.WindowConstants;
-import java.awt.Graphics;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -30,12 +23,30 @@ public class ReUI extends javax.swing.JFrame {
     private Timer timer = new Timer();
     private int positionWords = 0;
     private Image[] images = new Image[0];
-    
+
     /**
      * Creates new form ReUI
      */
     public ReUI() {
         initComponents();
+        try {
+            Constructor ctor = ReConfig.class.getDeclaredConstructor();
+            ctor.setAccessible(true);
+            ReConfig config = (ReConfig) ctor.newInstance();
+            config.readXML("default.xml");
+            System.out.println(config.getFontType());
+
+            // production code should handle these exceptions more gracefully
+        } catch (InstantiationException x) {
+            x.printStackTrace();
+        } catch (IllegalAccessException x) {
+            x.printStackTrace();
+        } catch (InvocationTargetException x) {
+            x.printStackTrace();
+        } catch (NoSuchMethodException x) {
+            x.printStackTrace();
+        }
+//        ReConfig.newInstance();
     }
 
     /**
@@ -181,12 +192,12 @@ public class ReUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadDefaultActionPerformed
 
     private void readingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readingActionPerformed
-         if (words.length == 0) {
+        if (words.length == 0) {
             JOptionPane.showMessageDialog(null, "No file selected");
         } else {
             //        init timer
             handleTimer();
-            
+
         }
     }//GEN-LAST:event_readingActionPerformed
 
@@ -204,7 +215,7 @@ public class ReUI extends javax.swing.JFrame {
                 images = ReImage.generateImageList(words);
 
                 positionWords = 0;
-                
+
 //                System.out.println(Arrays.deepToString(words));
             } catch (IOException ex) {
                 System.out.println("There was nothing to load.");
@@ -213,20 +224,20 @@ public class ReUI extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileActionPerformed
 
     private void handleTimer() {
-        if(timerEnabled == false) {
+        if (timerEnabled == false) {
             reading.setText("Stop");
             timerEnabled = true;
-            
+
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    if(positionWords < images.length) {
+                    if (positionWords < images.length) {
 //                        textField.setText(words[positionWords]);
-                        
+
                         drawImage(images[positionWords]);
-                        
+
                         positionWords++;
-                    }else {
+                    } else {
                         timer.cancel();
                         timer = new Timer();
                         positionWords = 0;
@@ -235,35 +246,35 @@ public class ReUI extends javax.swing.JFrame {
                     }
                 }
             }, 0, getPeriod());
-        }else {
+        } else {
             reading.setText("Start");
             timerEnabled = false;
-            
+
             timer.cancel();
             timer = new Timer();
         }
     }
-    
-    private void  drawImage(Image image) {
-        Graphics2D gfx = (Graphics2D)textPic.getGraphics();
+
+    private void drawImage(Image image) {
+        Graphics2D gfx = (Graphics2D) textPic.getGraphics();
         gfx.clearRect(0, 0, textPic.getWidth(), textPic.getHeight());
         gfx.drawImage(image, null, this);
         gfx.dispose();
     }
-    
+
     private int getPeriod() {
         int amount = Integer.parseInt(wordSpeed.getText());
-        
-        if(amount < 1 || amount > 2000) {
-            
+
+        if (amount < 1 || amount > 2000) {
+
 //            set a default value of 50 words per second
             return 200;
-        }else {
-            
-            return  Math.round(60*1000 / amount);
+        } else {
+
+            return Math.round(60 * 1000 / amount);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

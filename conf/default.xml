@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+	<textSizeMin>4</textSizeMin>
+	<textSizeMax>9</textSizeMax>
+	<fontSize>24</fontSize>
+	<fontType>Verdana</fontType>
+	<wordSpeed>250</wordSpeed>
+	<saveLang></saveLang>
+	<savePosition>0</savePosition>
+	<saveValue>false</saveValue>
+</config>
