@@ -15,6 +15,8 @@ import java.util.Arrays;
  */
 public class ReText {
 
+    private static ReConfig config = ReGlobals.initGlobals();
+    
     public static String reFromatText(String textFromFile) {
 
 //        return textFromFile.replaceAll("\\r\\n|\\r|\\n", " ");
@@ -46,7 +48,7 @@ public class ReText {
     private static String[] splitWithDictionary(String word, String[] dic) {
          String[] splitted = new String[0];
 
-        if(word.length() >8) {
+        if(word.length() > config.getTextSizeMax()-1) {
                  splitted = wordParts(word, dic);
 //                 debug here
                  if(splitted.length == 0) {
@@ -65,7 +67,7 @@ public class ReText {
 
         if (word.length() > 11) {
 //                String[] splitted = splitByNumber(word, 12);
-            String[] splitted = splitWord(word, 12);
+            String[] splitted = splitWord(word, config.getDefaultWordLength());
 
             for (int i = 0; i < splitted.length; i++) {
                 if (i == 0) {
@@ -91,7 +93,7 @@ public class ReText {
          String splitValue;
          int splitSize = 1;
         
-        while(word.length() > 8 && splitSize > 0) {
+        while(word.length() > config.getTextSizeMax()-1 && splitSize > 0) {
             splitValue = findInDic(word, dic);
             splitSize = splitValue.length();
             
@@ -143,8 +145,8 @@ public class ReText {
         String[] splitted;
         
         for(int i=0; i<text.length; i++) {
-            if(text[i].length() > 12) {
-                splitted = splitWord(text[i], 12);
+            if(text[i].length() > config.getDefaultWordLength()) {
+                splitted = splitWord(text[i], config.getDefaultWordLength());
             }else {
                 splitted = new String[1];
                 splitted[0] = text[i];

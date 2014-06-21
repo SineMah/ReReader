@@ -2,8 +2,11 @@
 <config>
 	<textSizeMin>4</textSizeMin>
 	<textSizeMax>9</textSizeMax>
+	<textOffset>85</textOffset>
+	<dictionaryMaxSearch>1000</dictionaryMaxSearch>
+	<defaultWordLength>12</defaultWordLength>
 	<fontSize>24</fontSize>
-	<fontType>Verdana</fontType>
+	<fontType>Arial</fontType>
 	<wordSpeed>250</wordSpeed>
 	<saveLang></saveLang>
 	<savePosition>0</savePosition>

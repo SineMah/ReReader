@@ -26,6 +26,8 @@ import java.awt.Color;
 
 public class ReImage {
     
+    private static ReConfig config = ReGlobals.initGlobals(); 
+    
     public static Image[] generateImageList(String[] words) {
         words = ReText.proofWords(words);
         
@@ -43,7 +45,7 @@ public class ReImage {
         
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
-        Font font = new Font("Arial", Font.PLAIN, 24);
+        Font font = new Font(config.getFontType(), Font.PLAIN, config.getFontSize());
         g2d.setFont(font);
         FontMetrics fm = g2d.getFontMetrics();
         int width = fm.stringWidth(text);
@@ -158,7 +160,7 @@ public class ReImage {
         Image[] firstImage = new Image[2];
         int width;
         int height;
-        int maxOffset = 85;
+        int maxOffset = config.getTextOffset();
         
 //        just the first part needs to get a new size to center all words
         if(imageParts.length > 0 ) {

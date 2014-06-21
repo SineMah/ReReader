@@ -23,30 +23,13 @@ public class ReUI extends javax.swing.JFrame {
     private Timer timer = new Timer();
     private int positionWords = 0;
     private Image[] images = new Image[0];
+    private ReConfig config = ReGlobals.initGlobals(); 
 
     /**
      * Creates new form ReUI
      */
     public ReUI() {
         initComponents();
-        try {
-            Constructor ctor = ReConfig.class.getDeclaredConstructor();
-            ctor.setAccessible(true);
-            ReConfig config = (ReConfig) ctor.newInstance();
-            config.readXML("default.xml");
-            System.out.println(config.getFontType());
-
-            // production code should handle these exceptions more gracefully
-        } catch (InstantiationException x) {
-            x.printStackTrace();
-        } catch (IllegalAccessException x) {
-            x.printStackTrace();
-        } catch (InvocationTargetException x) {
-            x.printStackTrace();
-        } catch (NoSuchMethodException x) {
-            x.printStackTrace();
-        }
-//        ReConfig.newInstance();
     }
 
     /**
@@ -263,7 +246,7 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     private int getPeriod() {
-        int amount = Integer.parseInt(wordSpeed.getText());
+        int amount = config.getWordSpeed();
 
         if (amount < 1 || amount > 2000) {
 

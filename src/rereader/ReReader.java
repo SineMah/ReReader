@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class ReReader {
 
+    private static ReConfig config = ReGlobals.initGlobals();
+
     /**
      * @param args the command line arguments
      */
@@ -55,16 +57,16 @@ public class ReReader {
         String[][] cleanedDictionaries = new String[dics.length][0];
         String[] dictionary = new String[0];
 
-        for(int i=0; i<dics.length; i++) {
+        for (int i = 0; i < dics.length; i++) {
             dictionaries[i] = readDic(dics[i]);
             cleanedDictionaries[i] = cleanDic(dictionaries[i]);
         }
-        
+
         dictionary = chooseDic(cleanedDictionaries, text);
 
         return dictionary;
     }
-    
+
     public static String[] getDictionaries() {
         List<String> dics = new ArrayList<String>();
         String workingDir = System.getProperty("user.dir");
@@ -87,7 +89,7 @@ public class ReReader {
         }
 
         finalDics = new String[dics.size()];
-        
+
         ///////////////////////////////////////////////////////////////
 //         try {
 //                String dic = ReFile.readFile(dicFile);
@@ -109,84 +111,84 @@ public class ReReader {
         String file = dicDir + dic;
         String dictionary;
         String[] dictionaryWords = new String[0];
-        
+
         try {
-                dictionary = ReFile.readFile(file);
-                dictionary = ReText.reFromatText(dictionary);
-                dictionaryWords = ReText.splitText(dictionary);
-                
+            dictionary = ReFile.readFile(file);
+            dictionary = ReText.reFromatText(dictionary);
+            dictionaryWords = ReText.splitText(dictionary);
+
 //                System.out.println(Arrays.deepToString(words));
-            } catch (IOException ex) {
-                System.out.println("There was nothing to load.");
-            }
-        
+        } catch (IOException ex) {
+            System.out.println("There was nothing to load.");
+        }
+
         return dictionaryWords;
     }
 
 //    just list shorter words in array and shrink it
     private static String[] cleanDic(String[] dic) {
-         List<String> list = new ArrayList<String>();
-         String[] finalList;
-         
-         for(int i=0; i<dic.length; i++) {
-             if(dic[i].length() < 9 && dic[i].length() > 3) {
-                 list.add(dic[i]);
-             }
-         }
-        
-         finalList = new String[list.size()];
-         
+        List<String> list = new ArrayList<String>();
+        String[] finalList;
+
+        for (int i = 0; i < dic.length; i++) {
+            if (dic[i].length() < config.getTextSizeMax() && dic[i].length() > config.getTextSizeMin()-1) {
+                list.add(dic[i]);
+            }
+        }
+
+        finalList = new String[list.size()];
+
         return list.toArray(finalList);
     }
-    
+
     private static String[] chooseDic(String[][] dics, String[] text) {
         String tempText;
         String tempDic;
-        int  langVal;
-        int  langKey;
+        int langVal;
+        int langKey;
         int[] countLang = new int[dics.length];
-        
-        for(int i=0; i<dics.length; i++) {
-            for(int j=0; j<dics[i].length; j++) {
-                for(int cnt=0; cnt < text.length && cnt < 1000; cnt++) {
+
+        for (int i = 0; i < dics.length; i++) {
+            for (int j = 0; j < dics[i].length; j++) {
+                for (int cnt = 0; cnt < text.length && cnt < config.getDictionaryMaxSearch(); cnt++) {
                     tempText = text[cnt].toLowerCase();
                     tempDic = dics[i][j].toLowerCase();
-                    
-                    if(tempText.contains(tempDic)) {
+
+                    if (tempText.contains(tempDic)) {
                         countLang[i]++;
                     }
                 }
             }
         }
-        
+
         langVal = getMax(countLang);
         langKey = getIndex(countLang, langVal);
-        
+
         return dics[langKey];
     }
-    
+
     public static int getMax(int[] numbers) {
         int max = Integer.MIN_VALUE;
-        
-        for(int i=0; i<numbers.length; i++) {
-            if(max < numbers[i]) {
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (max < numbers[i]) {
                 max = numbers[i];
             }
         }
-        
+
         return max;
     }
-    
+
     public static int getIndex(int[] numbers, int needle) {
         int index = 0;
-        
-        for(int i=0; i<numbers.length; i++) {
-            if(needle == numbers[i]) {
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (needle == numbers[i]) {
                 index = i;
                 break;
             }
         }
-        
+
         return index;
     }
 }

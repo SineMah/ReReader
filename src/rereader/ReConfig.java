@@ -20,6 +20,9 @@ public class ReConfig {
 
     private int textSizeMin = 4;
     private int textSizeMax = 9;
+    private int textOffset = 85;
+    private int dictionaryMaxSearch = 500;
+    private int defaultWordLength = 12;
     private int fontSize = 24;
     private String fontType = "Arial";
     private int wordSpeed = 250;
@@ -28,9 +31,9 @@ public class ReConfig {
     private boolean saveValue = false;
 
     private ReConfig() {
-        
+
     }
-    
+
     public int getTextSizeMin() {
         return textSizeMin;
     }
@@ -51,6 +54,36 @@ public class ReConfig {
         }
     }
 
+    public int getTextOffset() {
+        return textOffset;
+    }
+
+    public void setTextOffset(int value) {
+        if (value > 0) {
+            textOffset = value;
+        }
+    }
+    
+     public int getDictionaryMaxSearch() {
+        return dictionaryMaxSearch;
+    }
+
+    public void setDictionaryMaxSearch(int value) {
+        if (value > 500 && value < 10000) {
+            dictionaryMaxSearch = value;
+        }
+    }
+
+    public int getDefaultWordLength() {
+        return dictionaryMaxSearch;
+    }
+
+    public void setDefaultWordLength(int value) {
+        if (value > 5 && value < 15) {
+            dictionaryMaxSearch = value;
+        }
+    }
+    
     public int getFontSize() {
         return fontSize;
     }
@@ -88,7 +121,7 @@ public class ReConfig {
     public void setSaveLang(String value) {
         saveLang = value;
     }
-    
+
     public int getSavePosition() {
         return savePosition;
     }
@@ -105,19 +138,22 @@ public class ReConfig {
         saveValue = value;
     }
 
-    public void main (String [] args) {
+    public void main(String[] args) {
         readXML("default.xml");
     }
-    
+
     public void readXML(String file) {
         String workingDir = System.getProperty("user.dir");
         String xmlDir = workingDir + "/conf/";
         String xmlFile = xmlDir + file;
-System.out.println(xmlFile);
+
         Document xmlDOM = ReFile.openXML(xmlFile);
 
         setTextSizeMin(Integer.parseInt(xmlDOM.getElementsByTagName("textSizeMin").item(0).getTextContent()));
         setTextSizeMax(Integer.parseInt(xmlDOM.getElementsByTagName("textSizeMax").item(0).getTextContent()));
+        setTextOffset(Integer.parseInt(xmlDOM.getElementsByTagName("textOffset").item(0).getTextContent()));
+        setDictionaryMaxSearch(Integer.parseInt(xmlDOM.getElementsByTagName("dictionaryMaxSearch").item(0).getTextContent()));
+        setDefaultWordLength(Integer.parseInt(xmlDOM.getElementsByTagName("defaultWordLength").item(0).getTextContent()));
         setFontSize(Integer.parseInt(xmlDOM.getElementsByTagName("fontSize").item(0).getTextContent()));
         setFontType(xmlDOM.getElementsByTagName("fontType").item(0).getTextContent());
         setWordSpeed(Integer.parseInt(xmlDOM.getElementsByTagName("wordSpeed").item(0).getTextContent()));
