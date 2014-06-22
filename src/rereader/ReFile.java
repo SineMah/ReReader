@@ -51,7 +51,26 @@ public class ReFile {
             scanner.close();
         }
     }
+    
+    public static String readFileEncoded(String pathname) throws IOException {
+        String content = "";
+        String part;
+        String lineSeparator = System.getProperty("line.separator");
+        File file = new File(pathname);
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
 
+        while ((part = in.readLine()) != null) {
+//            PrintStream out = new PrintStream(System.out, true, "UTF-8");
+//            out.println(part);
+            content += part + lineSeparator;          
+        }
+        
+        in.close();
+        
+        return content;
+
+}
+    
     public static Document openXML(String path) {
         Document xml = null;
 

@@ -42,7 +42,6 @@ public class ReImage {
     }
     
     private static Image generateImage(String text, char color) {
-        
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
         Font font = new Font(config.getFontType(), Font.PLAIN, config.getFontSize());
