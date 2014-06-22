@@ -191,7 +191,7 @@ public class ReUI extends javax.swing.JFrame {
             String file = selectedDocument.getSelectedFile().toString();
             try {
                 String content = ReFile.readFileEncoded(file);
-                System.out.println(content);
+//                System.out.println(content);
                 content = ReText.reFromatText(content);
                 words = ReText.splitText(content);
 //                words = ReText.proofWords(words);
