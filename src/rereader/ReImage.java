@@ -87,14 +87,15 @@ public class ReImage {
     }
     
     private static Image proofWord(String word) {
-        int texLength = word.length();
+//        just cunt alpha nummeric stuff
+        int texLength = word.replaceAll("[^a-zA-Z0-9]", "").length();
         int position = 0;
         String[] parts;
   
         if(texLength == 1) {
             position = 1;
 //            highlight first
-        }else if(texLength < 4) {
+        }else if(texLength <= 4) {
             position = 2;
 //            highlight second
         }else if (texLength < 9) {

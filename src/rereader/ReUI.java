@@ -23,7 +23,7 @@ public class ReUI extends javax.swing.JFrame {
     private Timer timer = new Timer();
     private int positionWords = 0;
     private Image[] images = new Image[0];
-    private ReConfig config = ReGlobals.initGlobals(); 
+    private ReConfig config = ReGlobals.initGlobals();
 
     /**
      * Creates new form ReUI
@@ -47,6 +47,8 @@ public class ReUI extends javax.swing.JFrame {
         reading = new javax.swing.JButton();
         openFile = new javax.swing.JButton();
         textPic = new javax.swing.JPanel();
+        reProgressBar = new javax.swing.JProgressBar();
+        reProgressLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         loadDefault = new javax.swing.JCheckBox();
         wordSpeed = new javax.swing.JTextField();
@@ -76,34 +78,46 @@ public class ReUI extends javax.swing.JFrame {
         );
         textPicLayout.setVerticalGroup(
             textPicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 67, Short.MAX_VALUE)
+            .addGap(0, 52, Short.MAX_VALUE)
         );
+
+        reProgressLabel.setText("Welcome to ReReader");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(reading)
-                .addGap(48, 48, 48)
-                .addComponent(openFile)
-                .addContainerGap(77, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(reading)
+                                .addGap(48, 48, 48)
+                                .addComponent(openFile))
+                            .addComponent(reProgressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addComponent(textPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reading)
                     .addComponent(openFile))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(reProgressLabel)
+                .addGap(11, 11, 11)
+                .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Read", jPanel1);
@@ -145,7 +159,7 @@ public class ReUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(loadDefault)
                 .addGap(44, 44, 44))
         );
@@ -160,7 +174,7 @@ public class ReUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -189,6 +203,9 @@ public class ReUI extends javax.swing.JFrame {
 
         if (returnVal == 0) {
             String file = selectedDocument.getSelectedFile().toString();
+            
+            ReStatus.setLabel("Reading Files");
+            
             try {
                 String content = ReFile.readFileEncoded(file);
 //                System.out.println(content);
@@ -258,6 +275,26 @@ public class ReUI extends javax.swing.JFrame {
         }
     }
 
+    public int getProgressBar() {
+        return reProgressBar.getValue();
+    }
+
+    public static void setProgressBar(int value) {
+        if(value >= 0) {
+            reProgressBar.setValue(value);
+        }
+    }
+
+    public String getProgressLabel() {
+        return reProgressLabel.getText();
+    }
+
+    public static void setProgressLabel(String value) {
+        if(value.length() > 0) {
+           reProgressLabel.setText(value); 
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +337,8 @@ public class ReUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JCheckBox loadDefault;
     private javax.swing.JButton openFile;
+    public static javax.swing.JProgressBar reProgressBar;
+    public static javax.swing.JLabel reProgressLabel;
     private javax.swing.JButton reading;
     private javax.swing.JFileChooser selectedDocument;
     private javax.swing.JPanel textPic;
