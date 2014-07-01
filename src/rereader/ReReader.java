@@ -64,6 +64,8 @@ public class ReReader {
 
         dictionary = chooseDic(cleanedDictionaries, text);
 
+        ReUI.setProgressBar(20);
+        
         return dictionary;
     }
 

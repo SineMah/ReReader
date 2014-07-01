@@ -18,18 +18,21 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ReUI extends javax.swing.JFrame {
 
-    private String[] words = new String[0];
+    private static String[] words = new String[0];
     private Boolean timerEnabled = false;
     private Timer timer = new Timer();
     private int positionWords = 0;
-    private Image[] images = new Image[0];
+    private static Image[] images = new Image[0];
     private ReConfig config = ReGlobals.initGlobals();
+    private static int fileStatus = 0;
+    private static String content;
 
     /**
      * Creates new form ReUI
      */
     public ReUI() {
         initComponents();
+        reTimer();
     }
 
     /**
@@ -207,13 +210,16 @@ public class ReUI extends javax.swing.JFrame {
             ReStatus.setLabel("Reading Files");
             
             try {
-                String content = ReFile.readFileEncoded(file);
+                fileStatus = 1;
+                
+                content = ReFile.readFileEncoded(file);
 //                System.out.println(content);
                 content = ReText.reFromatText(content);
-                words = ReText.splitText(content);
+//                words = ReText.splitText(content);
 //                words = ReText.proofWords(words);
-                images = ReImage.generateImageList(words);
+//                images = ReImage.generateImageList(words);
 
+                fileStatus = 2;
                 positionWords = 0;
 
 //                System.out.println(Arrays.deepToString(words));
@@ -262,7 +268,7 @@ public class ReUI extends javax.swing.JFrame {
         gfx.dispose();
     }
 
-    private int getPeriod() {
+    private  int getPeriod() {
         int amount = config.getWordSpeed();
 
         if (amount < 1 || amount > 2000) {
@@ -275,7 +281,7 @@ public class ReUI extends javax.swing.JFrame {
         }
     }
 
-    public int getProgressBar() {
+    public static int getProgressBar() {
         return reProgressBar.getValue();
     }
 
@@ -295,6 +301,37 @@ public class ReUI extends javax.swing.JFrame {
         }
     }
 
+    private static void reTimer() {
+        Timer timer = new Timer();
+
+//        0 listen 
+//        1 processing
+//        2 processing done
+//        3 inactive
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                switch (fileStatus) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        fileStatus = 1;
+                        System.out.println("fdwvfwev");
+                        words = ReText.splitText(content);
+                        images = ReImage.generateImageList(words);
+                        System.out.println("###############");
+                        
+                        fileStatus = 3;
+                        break;
+                    default: 
+                        break;
+                }
+            }
+        }, 0, 50);
+    }
+    
     /**
      * @param args the command line arguments
      */

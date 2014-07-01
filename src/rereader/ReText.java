@@ -33,11 +33,19 @@ public class ReText {
          String[] splittedWord;
          List<String> words = new ArrayList<String>();
          String[] finalList = new String[0];
+         float maxLength = text.length;
+         float perc = 40;
+         double progress;
+         int progressBase = ReUI.getProgressBar();
          
          for(int i=0; i<text.length; i++) {
              splittedWord = splitWithDictionary(text[i], dictionary);
              
              words = stringsToList(words, splittedWord);
+             
+             progress = Math.ceil(i / maxLength * perc) + progressBase;
+             
+             ReUI.setProgressBar((int) progress);
          }
         
          finalList = new String[words.size()];

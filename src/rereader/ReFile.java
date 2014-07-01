@@ -58,11 +58,17 @@ public class ReFile {
         String lineSeparator = System.getProperty("line.separator");
         File file = new File(pathname);
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+        int i = 1;
 
         while ((part = in.readLine()) != null) {
 //            PrintStream out = new PrintStream(System.out, true, "UTF-8");
 //            out.println(part);
-            content += part + lineSeparator;          
+            content += part + lineSeparator;     
+            
+            content += part + lineSeparator;    
+            ReUI.setProgressLabel("Reading line " + i);
+//            ReUI.setProgressBar(i);
+            i++;
         }
         
         in.close();
