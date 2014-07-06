@@ -215,6 +215,7 @@ public class ReUI extends javax.swing.JFrame {
                 content = ReFile.readFileEncoded(file);
 //                System.out.println(content);
                 content = ReText.reFromatText(content);
+                
 //                words = ReText.splitText(content);
 //                words = ReText.proofWords(words);
 //                images = ReImage.generateImageList(words);
@@ -318,11 +319,10 @@ public class ReUI extends javax.swing.JFrame {
                         break;
                     case 2:
                         fileStatus = 1;
-                        System.out.println("fdwvfwev");
                         words = ReText.splitText(content);
                         images = ReImage.generateImageList(words);
-                        System.out.println("###############");
                         
+                        ReUI.setProgressLabel("Ready to read");
                         fileStatus = 3;
                         break;
                     default: 

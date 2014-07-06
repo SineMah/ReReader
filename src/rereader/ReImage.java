@@ -30,12 +30,18 @@ public class ReImage {
     
     public static Image[] generateImageList(String[] words) {
         words = ReText.proofWords(words);
+        float perc = 100;
+        float maxLength = words.length;
         
         Image[] images = new Image[words.length];
+        
+        ReUI.setProgressLabel("Generate word list");
         
         for(int i=0; i<words.length; i++) {
 //            images[i] = generateImage(words[i], 'b');
             images[i] = proofWord(words[i]);
+            
+            ReStatus.setProgress(i, maxLength, perc); 
         }
         
         return  images;

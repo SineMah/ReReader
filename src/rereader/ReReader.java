@@ -56,16 +56,20 @@ public class ReReader {
         String[][] dictionaries = new String[dics.length][0];
         String[][] cleanedDictionaries = new String[dics.length][0];
         String[] dictionary = new String[0];
+        float perc = 100;
+        float maxLength = dics.length;
 
+        ReUI.setProgressLabel("Initiate dictionaries");
+        
         for (int i = 0; i < dics.length; i++) {
             dictionaries[i] = readDic(dics[i]);
             cleanedDictionaries[i] = cleanDic(dictionaries[i]);
+            
+            ReStatus.setProgress(i, maxLength, perc); 
         }
 
         dictionary = chooseDic(cleanedDictionaries, text);
 
-        ReUI.setProgressBar(20);
-        
         return dictionary;
     }
 
@@ -149,7 +153,11 @@ public class ReReader {
         int langVal;
         int langKey;
         int[] countLang = new int[dics.length];
+        float perc = 100;
+        float maxLength = dics.length;
 
+        ReUI.setProgressLabel("Readinf dictionaries");
+        
         for (int i = 0; i < dics.length; i++) {
             for (int j = 0; j < dics[i].length; j++) {
                 for (int cnt = 0; cnt < text.length && cnt < config.getDictionaryMaxSearch(); cnt++) {
@@ -161,6 +169,8 @@ public class ReReader {
                     }
                 }
             }
+            
+            ReStatus.setProgress(i, maxLength, perc); 
         }
 
         langVal = getMax(countLang);

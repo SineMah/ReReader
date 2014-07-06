@@ -13,8 +13,7 @@ package rereader;
 public class ReStatus {
 
     public static void setProgress(String label, int progress) {
-        setLabel(label);
-        setProgress(progress);
+
     }
     
     public static void setLabel(String label) {
@@ -22,7 +21,13 @@ public class ReStatus {
         ReUI.setProgressLabel(label);
     }
     
-    public static void setProgress(int progress) {
-        
+    public static void setProgress(int current, float max, float maxPerc) {
+         int progressBase = ReUI.getProgressBar();
+         double progress;
+         
+//          progress = Math.ceil(current / max * maxPerc) + progressBase;
+          progress = Math.ceil(current / max * maxPerc);
+             
+          ReUI.setProgressBar((int) progress);
     }
 }
