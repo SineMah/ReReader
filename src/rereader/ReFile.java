@@ -65,7 +65,6 @@ public class ReFile {
 //            out.println(part);
             content += part + lineSeparator;     
             
-            content += part + lineSeparator;    
             ReUI.setProgressLabel("Reading line " + i);
 //            ReUI.setProgressBar(i);
             i++;
