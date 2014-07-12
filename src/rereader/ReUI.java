@@ -59,6 +59,12 @@ public class ReUI extends javax.swing.JFrame {
         showStatus = new javax.swing.JCheckBox();
         showOption = new javax.swing.JCheckBox();
 
+        statusFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                statusFrameWindowClosed(evt);
+            }
+        });
+
         reProgressLabel.setText("WElcome to ReReader");
 
         javax.swing.GroupLayout statusFrameLayout = new javax.swing.GroupLayout(statusFrame.getContentPane());
@@ -81,6 +87,12 @@ public class ReUI extends javax.swing.JFrame {
                 .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        optionFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                optionFrameWindowClosed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -147,8 +159,18 @@ public class ReUI extends javax.swing.JFrame {
         });
 
         showStatus.setText("show status");
+        showStatus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                showStatusItemStateChanged(evt);
+            }
+        });
 
         showOption.setText("show options");
+        showOption.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                showOptionItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,6 +251,22 @@ public class ReUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_openFileActionPerformed
 
+    private void showStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showStatusItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showStatusItemStateChanged
+
+    private void showOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showOptionItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showOptionItemStateChanged
+
+    private void optionFrameWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_optionFrameWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionFrameWindowClosed
+
+    private void statusFrameWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_statusFrameWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusFrameWindowClosed
+
     private void handleTimer() {
         if (timerEnabled == false) {
             reading.setText("Stop");
@@ -282,22 +320,22 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     public static int getProgressBar() {
-        return reProgressBar_old.getValue();
+        return reProgressBar.getValue();
     }
 
     public static void setProgressBar(int value) {
         if(value >= 0) {
-            reProgressBar_old.setValue(value);
+            reProgressBar.setValue(value);
         }
     }
 
     public String getProgressLabel() {
-        return reProgressLabel_old.getText();
+        return reProgressLabel.getText();
     }
 
     public static void setProgressLabel(String value) {
         if(value.length() > 0) {
-           reProgressLabel_old.setText(value); 
+           reProgressLabel.setText(value); 
         }
     }
 

@@ -5,6 +5,9 @@
     <Component class="javax.swing.JFileChooser" name="selectedDocument">
     </Component>
     <Container class="javax.swing.JFrame" name="statusFrame">
+      <Events>
+        <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="statusFrameWindowClosed"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -42,6 +45,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="optionFrame">
+      <Events>
+        <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="optionFrameWindowClosed"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -210,11 +216,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="show status"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="showStatusItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="showOption">
       <Properties>
         <Property name="text" type="java.lang.String" value="show options"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="showOptionItemStateChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
