@@ -67,6 +67,9 @@ public class ReUI extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 statusFrameWindowClosed(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                statusFrameWindowClosing(evt);
+            }
         });
 
         reProgressLabel.setText("WElcome to ReReader");
@@ -95,6 +98,9 @@ public class ReUI extends javax.swing.JFrame {
         optionFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 optionFrameWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                optionFrameWindowClosing(evt);
             }
         });
 
@@ -280,6 +286,16 @@ public class ReUI extends javax.swing.JFrame {
     private void statusFrameWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_statusFrameWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_statusFrameWindowClosed
+
+    private void optionFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_optionFrameWindowClosing
+        // TODO add your handling code here:
+        System.out.println("birds");
+    }//GEN-LAST:event_optionFrameWindowClosing
+
+    private void statusFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_statusFrameWindowClosing
+        // TODO add your handling code here:
+        System.out.println("blue");
+    }//GEN-LAST:event_statusFrameWindowClosing
 
     private void handleTimer() {
         if (timerEnabled == false) {

@@ -7,6 +7,7 @@
     <Container class="javax.swing.JFrame" name="statusFrame">
       <Events>
         <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="statusFrameWindowClosed"/>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="statusFrameWindowClosing"/>
       </Events>
 
       <Layout>
@@ -47,6 +48,7 @@
     <Container class="javax.swing.JFrame" name="optionFrame">
       <Events>
         <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="optionFrameWindowClosed"/>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="optionFrameWindowClosing"/>
       </Events>
 
       <Layout>
