@@ -390,8 +390,8 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     private int getPeriod() {
-        int amount = config.getWordSpeed();
-
+        int amount = Integer.parseInt(wordSpeed.getText());
+                
         if (amount < 1 || amount > 2000) {
 
 //            set a default value of 50 words per second

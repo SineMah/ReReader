@@ -25,7 +25,6 @@ public class ReConfig {
     private int defaultWordLength = 12;
     private int fontSize = 24;
     private String fontType = "Arial";
-    private int wordSpeed = 250;
     private String saveLang = "english";
     private int savePosition = 0;
     private boolean saveValue = false;
@@ -104,16 +103,6 @@ public class ReConfig {
         }
     }
 
-    public int getWordSpeed() {
-        return wordSpeed;
-    }
-
-    public void setWordSpeed(int value) {
-        if (wordSpeed > 0 && wordSpeed < 2500) {
-            wordSpeed = value;
-        }
-    }
-
     public String getSaveLang() {
         return saveLang;
     }
@@ -156,7 +145,6 @@ public class ReConfig {
         setDefaultWordLength(Integer.parseInt(xmlDOM.getElementsByTagName("defaultWordLength").item(0).getTextContent()));
         setFontSize(Integer.parseInt(xmlDOM.getElementsByTagName("fontSize").item(0).getTextContent()));
         setFontType(xmlDOM.getElementsByTagName("fontType").item(0).getTextContent());
-        setWordSpeed(Integer.parseInt(xmlDOM.getElementsByTagName("wordSpeed").item(0).getTextContent()));
         setSaveLang(xmlDOM.getElementsByTagName("saveLang").item(0).getTextContent());
         setSavePosition(Integer.parseInt(xmlDOM.getElementsByTagName("savePosition").item(0).getTextContent()));
         setSaveValue(Boolean.parseBoolean(xmlDOM.getElementsByTagName("saveValue").item(0).getTextContent()));
