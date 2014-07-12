@@ -409,14 +409,14 @@ public class ReUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox loadDefault;
     private javax.swing.JButton openFile;
-    private javax.swing.JFrame optionFrame;
-    private javax.swing.JProgressBar reProgressBar;
-    private javax.swing.JLabel reProgressLabel;
+    private static javax.swing.JFrame optionFrame;
+    private static javax.swing.JProgressBar reProgressBar;
+    private static javax.swing.JLabel reProgressLabel;
     private javax.swing.JButton reading;
     private javax.swing.JFileChooser selectedDocument;
     private javax.swing.JCheckBox showOption;
     private javax.swing.JCheckBox showStatus;
-    private javax.swing.JFrame statusFrame;
+    private static javax.swing.JFrame statusFrame;
     private javax.swing.JPanel textPic;
     private javax.swing.JTextField wordSpeed;
     // End of variables declaration//GEN-END:variables
