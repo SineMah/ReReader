@@ -31,14 +31,13 @@ public class ReUI extends javax.swing.JFrame {
     public ReUI() {
         initComponents();
         reTimer();
-        
+
 //        set sizes of new frames
         statusFrame.setSize(251, 80);
         optionFrame.setSize(178, 160);
-        
+
 //        set default item of combo box
-        defaultLang.removeAllItems();
-        defaultLang.addItem("auto");
+        setDefaultLang();
     }
 
     /**
@@ -239,20 +238,19 @@ public class ReUI extends javax.swing.JFrame {
 
         if (returnVal == 0) {
             String file = selectedDocument.getSelectedFile().toString();
-            
+
             ReStatus.setLabel("Reading Files");
-            
+
             try {
                 fileStatus = 1;
-                
+
                 content = ReFile.readFileEncoded(file);
 //                System.out.println(content);
                 content = ReText.reFromatText(content);
-                
+
 //                words = ReText.splitText(content);
 //                words = ReText.proofWords(words);
 //                images = ReImage.generateImageList(words);
-
                 fileStatus = 2;
                 positionWords = 0;
 
@@ -265,18 +263,18 @@ public class ReUI extends javax.swing.JFrame {
 
     private void showStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showStatusItemStateChanged
         // TODO add your handling code here:
-        if(statusFrame.isVisible()) {
+        if (statusFrame.isVisible()) {
             statusFrame.setVisible(false);
-        }else {
+        } else {
             statusFrame.setVisible(true);
         }
     }//GEN-LAST:event_showStatusItemStateChanged
 
     private void showOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showOptionItemStateChanged
         // TODO add your handling code here:
-        if(optionFrame.isVisible()) {
+        if (optionFrame.isVisible()) {
             optionFrame.setVisible(false);
-        }else {
+        } else {
             optionFrame.setVisible(true);
         }
     }//GEN-LAST:event_showOptionItemStateChanged
@@ -291,17 +289,58 @@ public class ReUI extends javax.swing.JFrame {
 
     private void optionFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_optionFrameWindowClosing
         // TODO add your handling code here:
-        if(showOption.isSelected()) {
+        if (showOption.isSelected()) {
             showOption.setSelected(false);
         }
     }//GEN-LAST:event_optionFrameWindowClosing
 
     private void statusFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_statusFrameWindowClosing
         // TODO add your handling code here:
-        if(showStatus.isSelected()) {
+        if (showStatus.isSelected()) {
             showStatus.setSelected(false);
         }
     }//GEN-LAST:event_statusFrameWindowClosing
+
+    private void setDefaultLang() {
+        String[] dics = ReReader.getDictionaries();
+        String[] dicParts;
+        String dicName = "auto";
+        StringBuilder sb = new StringBuilder();
+        int end;
+
+        defaultLang.removeAllItems();
+        defaultLang.addItem(dicName);
+
+        dicName = "";
+
+        for (int i = 0; i < dics.length; i++) {
+            if (dics[i].contains(".")) {
+                dicParts = dics[i].split("\\.");
+
+                if (dicParts.length > 2) {
+                    end = dicParts.length - 1;
+
+                    dicParts = Arrays.copyOfRange(dicParts, 0, end - 1);
+
+                    for (int j = 0; i < dicParts.length; j++) {
+                        sb.append(dicParts[j]);
+                    }
+
+                    dicName = sb.toString();
+                } else {
+                    if(dicParts.length > 0) {
+                        dicName = dicParts[0];
+                    }
+                }
+            } else {
+                dicName = dics[i];
+            }
+            
+            if(dicName.length() > 0) {
+                defaultLang.addItem(dicName);
+            }
+        }
+    }
 
     private void handleTimer() {
         if (timerEnabled == false) {
@@ -342,7 +381,7 @@ public class ReUI extends javax.swing.JFrame {
         gfx.dispose();
     }
 
-    private  int getPeriod() {
+    private int getPeriod() {
         int amount = config.getWordSpeed();
 
         if (amount < 1 || amount > 2000) {
@@ -360,7 +399,7 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     public static void setProgressBar(int value) {
-        if(value >= 0) {
+        if (value >= 0) {
             reProgressBar.setValue(value);
         }
     }
@@ -370,8 +409,8 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     public static void setProgressLabel(String value) {
-        if(value.length() > 0) {
-           reProgressLabel.setText(value); 
+        if (value.length() > 0) {
+            reProgressLabel.setText(value);
         }
     }
 
@@ -394,17 +433,17 @@ public class ReUI extends javax.swing.JFrame {
                         fileStatus = 1;
                         words = ReText.splitText(content);
                         images = ReImage.generateImageList(words);
-                        
+
                         ReUI.setProgressLabel("Ready to read");
                         fileStatus = 3;
                         break;
-                    default: 
+                    default:
                         break;
                 }
             }
         }, 0, 50);
     }
-    
+
     /**
      * @param args the command line arguments
      */
