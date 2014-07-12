@@ -45,33 +45,81 @@ public class ReUI extends javax.swing.JFrame {
     private void initComponents() {
 
         selectedDocument = new javax.swing.JFileChooser();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        reading = new javax.swing.JButton();
-        openFile = new javax.swing.JButton();
-        textPic = new javax.swing.JPanel();
+        statusFrame = new javax.swing.JFrame();
         reProgressBar = new javax.swing.JProgressBar();
         reProgressLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        optionFrame = new javax.swing.JFrame();
+        jComboBox1 = new javax.swing.JComboBox();
         loadDefault = new javax.swing.JCheckBox();
-        wordSpeed = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        wordSpeed = new javax.swing.JTextField();
+        textPic = new javax.swing.JPanel();
+        openFile = new javax.swing.JButton();
+        reading = new javax.swing.JButton();
+        showStatus = new javax.swing.JCheckBox();
+        showOption = new javax.swing.JCheckBox();
+
+        reProgressLabel.setText("WElcome to ReReader");
+
+        javax.swing.GroupLayout statusFrameLayout = new javax.swing.GroupLayout(statusFrame.getContentPane());
+        statusFrame.getContentPane().setLayout(statusFrameLayout);
+        statusFrameLayout.setHorizontalGroup(
+            statusFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(statusFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reProgressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        statusFrameLayout.setVerticalGroup(
+            statusFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reProgressLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        loadDefault.setText("Use ini file");
+
+        jLabel1.setText("words per second");
+
+        wordSpeed.setText("250");
+
+        javax.swing.GroupLayout optionFrameLayout = new javax.swing.GroupLayout(optionFrame.getContentPane());
+        optionFrame.getContentPane().setLayout(optionFrameLayout);
+        optionFrameLayout.setHorizontalGroup(
+            optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(optionFrameLayout.createSequentialGroup()
+                        .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        optionFrameLayout.setVerticalGroup(
+            optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(loadDefault)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        reading.setText("Start");
-        reading.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                readingActionPerformed(evt);
-            }
-        });
-
-        openFile.setText("open file");
-        openFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openFileActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout textPicLayout = new javax.swing.GroupLayout(textPic);
         textPic.setLayout(textPicLayout);
@@ -84,112 +132,63 @@ public class ReUI extends javax.swing.JFrame {
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        reProgressLabel.setText("Welcome to ReReader");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(reading)
-                                .addGap(48, 48, 48)
-                                .addComponent(openFile))
-                            .addComponent(reProgressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reading)
-                    .addComponent(openFile))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(reProgressLabel)
-                .addGap(11, 11, 11)
-                .addComponent(reProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jTabbedPane1.addTab("Read", jPanel1);
-
-        loadDefault.setText("use ini file if it exists");
-        loadDefault.addActionListener(new java.awt.event.ActionListener() {
+        openFile.setText("open file");
+        openFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadDefaultActionPerformed(evt);
+                openFileActionPerformed(evt);
             }
         });
 
-        wordSpeed.setText("250");
-        wordSpeed.addActionListener(new java.awt.event.ActionListener() {
+        reading.setText("Start");
+        reading.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wordSpeedActionPerformed(evt);
+                readingActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("words per minute");
+        showStatus.setText("show status");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loadDefault)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(loadDefault)
-                .addGap(44, 44, 44))
-        );
-
-        jTabbedPane1.addTab("Options", jPanel2);
+        showOption.setText("show options");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(reading)
+                                .addGap(48, 48, 48)
+                                .addComponent(openFile))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(showStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showOption, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                        .addGap(0, 177, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reading)
+                    .addComponent(openFile))
+                .addGap(32, 32, 32)
+                .addComponent(showStatus)
+                .addGap(18, 18, 18)
+                .addComponent(showOption)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void wordSpeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordSpeedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wordSpeedActionPerformed
-
-    private void loadDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDefaultActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loadDefaultActionPerformed
 
     private void readingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readingActionPerformed
         if (words.length == 0) {
@@ -283,22 +282,22 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     public static int getProgressBar() {
-        return reProgressBar.getValue();
+        return reProgressBar_old.getValue();
     }
 
     public static void setProgressBar(int value) {
         if(value >= 0) {
-            reProgressBar.setValue(value);
+            reProgressBar_old.setValue(value);
         }
     }
 
     public String getProgressLabel() {
-        return reProgressLabel.getText();
+        return reProgressLabel_old.getText();
     }
 
     public static void setProgressLabel(String value) {
         if(value.length() > 0) {
-           reProgressLabel.setText(value); 
+           reProgressLabel_old.setText(value); 
         }
     }
 
@@ -368,16 +367,18 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JCheckBox loadDefault;
     private javax.swing.JButton openFile;
-    public static javax.swing.JProgressBar reProgressBar;
-    public static javax.swing.JLabel reProgressLabel;
+    private javax.swing.JFrame optionFrame;
+    private javax.swing.JProgressBar reProgressBar;
+    private javax.swing.JLabel reProgressLabel;
     private javax.swing.JButton reading;
     private javax.swing.JFileChooser selectedDocument;
+    private javax.swing.JCheckBox showOption;
+    private javax.swing.JCheckBox showStatus;
+    private javax.swing.JFrame statusFrame;
     private javax.swing.JPanel textPic;
     private javax.swing.JTextField wordSpeed;
     // End of variables declaration//GEN-END:variables

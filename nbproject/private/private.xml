@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Java/ReReader/src/rereader/ReUI.java</file>
             <file>file:/C:/Java/ReReader/src/rereader/ReImage.java</file>
+            <file>file:/C:/Java/ReReader/src/rereader/ReFile.java</file>
+            <file>file:/C:/Java/ReReader/src/rereader/ReConfig.java</file>
             <file>file:/C:/Java/ReReader/src/rereader/ReReader.java</file>
             <file>file:/C:/Java/ReReader/src/rereader/ReText.java</file>
         </group>
