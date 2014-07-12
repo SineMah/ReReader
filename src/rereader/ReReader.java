@@ -61,14 +61,22 @@ public class ReReader {
 
         ReUI.setProgressLabel("Initiate dictionaries");
         
-        for (int i = 0; i < dics.length; i++) {
-            dictionaries[i] = readDic(dics[i]);
-            cleanedDictionaries[i] = cleanDic(dictionaries[i]);
-            
-            ReStatus.setProgress(i, maxLength, perc); 
-        }
+        if(ReUI.getDefaultLang().contains("auto")) {
+            for (int i = 0; i < dics.length; i++) {
+                dictionaries[i] = readDic(dics[i]);
+                cleanedDictionaries[i] = cleanDic(dictionaries[i]);
 
-        dictionary = chooseDic(cleanedDictionaries, text);
+                ReStatus.setProgress(i, maxLength, perc); 
+            }
+
+            dictionary = chooseDic(cleanedDictionaries, text);
+        }else {
+            for (int i = 0; i < dics.length; i++) {
+                if(dics[i].contains(ReUI.getDefaultLang())) {
+                     dictionary = readDic(dics[i]);
+                }
+            }
+        }
 
         return dictionary;
     }
