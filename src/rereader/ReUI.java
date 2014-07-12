@@ -33,6 +33,10 @@ public class ReUI extends javax.swing.JFrame {
     public ReUI() {
         initComponents();
         reTimer();
+        
+//        set sizes of new frames
+        statusFrame.setSize(251, 80);
+        optionFrame.setSize(178, 160);
     }
 
     /**
@@ -253,10 +257,20 @@ public class ReUI extends javax.swing.JFrame {
 
     private void showStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showStatusItemStateChanged
         // TODO add your handling code here:
+        if(statusFrame.isVisible()) {
+            statusFrame.setVisible(false);
+        }else {
+            statusFrame.setVisible(true);
+        }
     }//GEN-LAST:event_showStatusItemStateChanged
 
     private void showOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showOptionItemStateChanged
         // TODO add your handling code here:
+        if(optionFrame.isVisible()) {
+            optionFrame.setVisible(false);
+        }else {
+            optionFrame.setVisible(true);
+        }
     }//GEN-LAST:event_showOptionItemStateChanged
 
     private void optionFrameWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_optionFrameWindowClosed
