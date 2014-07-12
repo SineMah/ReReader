@@ -289,12 +289,16 @@ public class ReUI extends javax.swing.JFrame {
 
     private void optionFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_optionFrameWindowClosing
         // TODO add your handling code here:
-        System.out.println("birds");
+        if(showOption.isSelected()) {
+            showOption.setSelected(false);
+        }
     }//GEN-LAST:event_optionFrameWindowClosing
 
     private void statusFrameWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_statusFrameWindowClosing
         // TODO add your handling code here:
-        System.out.println("blue");
+        if(showStatus.isSelected()) {
+            showStatus.setSelected(false);
+        }
     }//GEN-LAST:event_statusFrameWindowClosing
 
     private void handleTimer() {
