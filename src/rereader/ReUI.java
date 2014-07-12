@@ -9,8 +9,6 @@ import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 import java.awt.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -37,6 +35,10 @@ public class ReUI extends javax.swing.JFrame {
 //        set sizes of new frames
         statusFrame.setSize(251, 80);
         optionFrame.setSize(178, 160);
+        
+//        set default item of combo box
+        defaultLang.removeAllItems();
+        defaultLang.addItem("auto");
     }
 
     /**
@@ -53,7 +55,7 @@ public class ReUI extends javax.swing.JFrame {
         reProgressBar = new javax.swing.JProgressBar();
         reProgressLabel = new javax.swing.JLabel();
         optionFrame = new javax.swing.JFrame();
-        jComboBox1 = new javax.swing.JComboBox();
+        defaultLang = new javax.swing.JComboBox();
         loadDefault = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         wordSpeed = new javax.swing.JTextField();
@@ -104,7 +106,7 @@ public class ReUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        defaultLang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         loadDefault.setText("Use ini file");
 
@@ -123,7 +125,7 @@ public class ReUI extends javax.swing.JFrame {
                         .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(defaultLang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loadDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -137,7 +139,7 @@ public class ReUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(loadDefault)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(defaultLang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -439,7 +441,7 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox defaultLang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox loadDefault;
     private javax.swing.JButton openFile;
