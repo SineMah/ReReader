@@ -31,7 +31,7 @@ public class ReUI extends javax.swing.JFrame {
     public ReUI() {
         initComponents();
         reTimer();
-
+        
 //        set sizes of new frames
         statusFrame.setSize(251, 80);
         optionFrame.setSize(178, 160);
@@ -55,9 +55,10 @@ public class ReUI extends javax.swing.JFrame {
         reProgressLabel = new javax.swing.JLabel();
         optionFrame = new javax.swing.JFrame();
         defaultLang = new javax.swing.JComboBox();
-        loadDefault = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         wordSpeed = new javax.swing.JTextField();
+        inputPosition = new javax.swing.JTextField();
+        chkPosition = new javax.swing.JCheckBox();
         textPic = new javax.swing.JPanel();
         openFile = new javax.swing.JButton();
         reading = new javax.swing.JButton();
@@ -73,7 +74,7 @@ public class ReUI extends javax.swing.JFrame {
             }
         });
 
-        reProgressLabel.setText("WElcome to ReReader");
+        reProgressLabel.setText("Welcome to ReReader");
 
         javax.swing.GroupLayout statusFrameLayout = new javax.swing.GroupLayout(statusFrame.getContentPane());
         statusFrame.getContentPane().setLayout(statusFrameLayout);
@@ -107,11 +108,13 @@ public class ReUI extends javax.swing.JFrame {
 
         defaultLang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        loadDefault.setText("Use ini file");
-
         jLabel1.setText("words per second");
 
         wordSpeed.setText("250");
+
+        inputPosition.setText("0");
+
+        chkPosition.setText("position in text");
 
         javax.swing.GroupLayout optionFrameLayout = new javax.swing.GroupLayout(optionFrame.getContentPane());
         optionFrame.getContentPane().setLayout(optionFrameLayout);
@@ -119,13 +122,16 @@ public class ReUI extends javax.swing.JFrame {
             optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(defaultLang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(optionFrameLayout.createSequentialGroup()
                         .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(defaultLang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(optionFrameLayout.createSequentialGroup()
+                        .addComponent(chkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionFrameLayout.setVerticalGroup(
@@ -136,8 +142,10 @@ public class ReUI extends javax.swing.JFrame {
                     .addComponent(wordSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(loadDefault)
-                .addGap(18, 18, 18)
+                .addGroup(optionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkPosition))
+                .addGap(20, 20, 20)
                 .addComponent(defaultLang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -414,6 +422,11 @@ public class ReUI extends javax.swing.JFrame {
         }
     }
 
+    public static String getDefaultLang() {
+        
+        return defaultLang.getSelectedItem().toString();
+    }
+    
     private static void reTimer() {
         Timer timer = new Timer();
 
@@ -480,9 +493,10 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox defaultLang;
+    private javax.swing.JCheckBox chkPosition;
+    private static javax.swing.JComboBox defaultLang;
+    private javax.swing.JTextField inputPosition;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JCheckBox loadDefault;
     private javax.swing.JButton openFile;
     private static javax.swing.JFrame optionFrame;
     private static javax.swing.JProgressBar reProgressBar;

@@ -40,7 +40,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="reProgressLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="WElcome to ReReader"/>
+            <Property name="text" type="java.lang.String" value="Welcome to ReReader"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -56,14 +56,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="defaultLang" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="wordSpeed" min="-2" pref="43" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="defaultLang" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="loadDefault" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="chkPosition" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="inputPosition" min="-2" pref="43" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -78,8 +82,11 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="loadDefault" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="inputPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="defaultLang" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -99,11 +106,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="loadDefault">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Use ini file"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="words per second"/>
@@ -112,6 +114,16 @@
         <Component class="javax.swing.JTextField" name="wordSpeed">
           <Properties>
             <Property name="text" type="java.lang.String" value="250"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="inputPosition">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chkPosition">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="position in text"/>
           </Properties>
         </Component>
       </SubComponents>
