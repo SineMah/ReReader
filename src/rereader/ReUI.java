@@ -35,6 +35,7 @@ public class ReUI extends javax.swing.JFrame {
 //        set sizes of new frames
         statusFrame.setSize(251, 80);
         optionFrame.setSize(178, 160);
+        chkPosition.setEnabled(false);
 
 //        set default item of combo box
         setDefaultLang();
@@ -235,9 +236,12 @@ public class ReUI extends javax.swing.JFrame {
         if (words.length == 0) {
             JOptionPane.showMessageDialog(null, "No file selected");
         } else {
+            if((getPosition() > 0 && getPosition() < words.length) || getPosition() == 0) {
             //        init timer
-            handleTimer();
-
+                handleTimer();
+            }else {
+                setProgressLabel("Text position is not valid");
+            }
         }
     }//GEN-LAST:event_readingActionPerformed
 
@@ -427,6 +431,16 @@ public class ReUI extends javax.swing.JFrame {
         return defaultLang.getSelectedItem().toString();
     }
     
+    public static int  getPosition() {
+        
+        return  Integer.parseInt(inputPosition.getText());
+    }
+    
+    public static void setPosition(int value) {
+        
+        inputPosition.setText(Integer.toString(value));
+    }
+    
     private static void reTimer() {
         Timer timer = new Timer();
 
@@ -495,7 +509,7 @@ public class ReUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chkPosition;
     private static javax.swing.JComboBox defaultLang;
-    private javax.swing.JTextField inputPosition;
+    private static javax.swing.JTextField inputPosition;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton openFile;
     private static javax.swing.JFrame optionFrame;
