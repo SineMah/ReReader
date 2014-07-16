@@ -24,6 +24,14 @@ public class ReUI extends javax.swing.JFrame {
     private ReConfig config = ReGlobals.initGlobals();
     private static int fileStatus = 0;
     private static String content;
+    private static int bStatus = 0;
+    /**
+     *  0       new file opened
+     *  1       running through words
+     *  2       paused
+     */
+    
+    
 
     /**
      * Creates new form ReUI
@@ -34,7 +42,7 @@ public class ReUI extends javax.swing.JFrame {
         
 //        set sizes of new frames
         statusFrame.setSize(251, 80);
-        optionFrame.setSize(178, 160);
+        optionFrame.setSize(183, 170);
         chkPosition.setEnabled(false);
 
 //        set default item of combo box
@@ -355,6 +363,10 @@ public class ReUI extends javax.swing.JFrame {
     }
 
     private void handleTimer() {
+        if(bStatus > 0) {
+            positionWords = getPosition();
+        }
+        
         if (timerEnabled == false) {
             reading.setText("Stop");
             timerEnabled = true;
@@ -368,18 +380,24 @@ public class ReUI extends javax.swing.JFrame {
                         drawImage(images[positionWords]);
 
                         positionWords++;
+                        setPosition(positionWords);
+                        bStatus = 1;
                     } else {
                         timer.cancel();
                         timer = new Timer();
                         positionWords = 0;
                         reading.setText("Start");
                         timerEnabled = false;
+                        bStatus = 2;
+                        
+                        setPosition(positionWords);
                     }
                 }
             }, 0, getPeriod());
         } else {
             reading.setText("Start");
             timerEnabled = false;
+            bStatus = 2;
 
             timer.cancel();
             timer = new Timer();
@@ -460,6 +478,7 @@ public class ReUI extends javax.swing.JFrame {
                         fileStatus = 1;
                         words = ReText.splitText(content);
                         images = ReImage.generateImageList(words);
+                        bStatus = 0;
 
                         ReUI.setProgressLabel("Ready to read");
                         fileStatus = 3;
